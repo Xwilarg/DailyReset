@@ -13,7 +13,7 @@ class QuizzFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v: View = inflater.inflate(R.layout.fragment_home, container, false)
+        val v: View = inflater.inflate(R.layout.fragment_quizz, container, false)
         return v
     }
 }
