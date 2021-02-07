@@ -1,14 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/settings_title_language">
-        <ListPreference
-            android:defaultValue="English"
-            android:entries="@array/language"
-            android:entryValues="@array/languageAlias"
-            android:key="preference_language"
-            android:title="@string/settings_language" />
-    </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_title_about">
         <Preference
             app:key="github"

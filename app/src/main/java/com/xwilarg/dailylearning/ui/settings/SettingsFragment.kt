@@ -11,13 +11,14 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.xwilarg.dailylearning.R
 
+
 class SettingsFragment : Fragment() {
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.preferences, rootKey)
 
             findPreference<Preference>("github")!!.setOnPreferenceClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Xwilarg/DailyLanguage")))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Xwilarg/DailyLearning")))
                 true
             }
         }
