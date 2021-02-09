@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DailyLearning</string>
+    <string name="app_name">DailyReset</string>
     <string name="title_home">Accueil</string>
     <string name="title_quizz">Quizz</string>
     <string name="title_settings">Paramètres</string>

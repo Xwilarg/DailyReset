@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DailyLearning</string>
+    <string name="app_name">DailyReset</string>
     <string name="title_home">Home</string>
     <string name="title_quizz">Quizz</string>
     <string name="title_settings">Settings</string>
