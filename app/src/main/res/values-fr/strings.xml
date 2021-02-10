@@ -13,4 +13,7 @@
     <string name="home_current">Mot du jour:</string>
 
     <string name="quizz_words">Liste des mots</string>
+    <string name="quizz_your_answer">Votre réponse:</string>
+    <string name="quizz_right_answer">Bonne réponse:</string>
+    <string name="quizz_error">Vous devez connaître au moins 2 mots avant de faire un quizz, revenez demain.</string>
 </resources>
