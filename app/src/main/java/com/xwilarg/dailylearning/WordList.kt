@@ -1,12 +1,10 @@
-package com.xwilarg.dailylearning.ui.quizz
+package com.xwilarg.dailylearning
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.gson.Gson
-import com.xwilarg.dailylearning.R
-import com.xwilarg.dailylearning.VocabularyInfo
 
 class WordList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

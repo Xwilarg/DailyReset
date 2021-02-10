@@ -1,5 +1,6 @@
 package com.xwilarg.dailylearning.quizz
 
+import android.content.Intent
 import android.graphics.Color
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.gson.Gson
 import com.xwilarg.dailylearning.R
 import com.xwilarg.dailylearning.VocabularyInfo
+import com.xwilarg.dailylearning.WordList
 import kotlin.random.Random
 
 open class AQuizz : AppCompatActivity() {
@@ -14,6 +16,7 @@ open class AQuizz : AppCompatActivity() {
         words = Gson().fromJson(applicationContext.openFileInput("japaneseWords.txt").bufferedReader().use {
             it.readText()
         }, Array<VocabularyInfo>::class.java)
+        remainingWords = words.copyOf().toCollection(ArrayList())
         loadQuestion()
     }
 
@@ -46,7 +49,16 @@ open class AQuizz : AppCompatActivity() {
     }
 
     fun loadQuestion() {
-        current = words[Random.nextInt(words.size)]
+        if (remainingWords.size == 0) {
+            startActivity(Intent(applicationContext, QuizzEnd::class.java))
+            return
+        }
+
+        // Get next question
+        val index = Random.nextInt(remainingWords.size)
+        current = remainingWords[index]
+        remainingWords.removeAt(index)
+
         guessReverse = Random.nextInt(0, 2) == 0
         // Resize text depending if the question contains only the kanji or a list of words
         findViewById<TextView>(R.id.textQuizz).textSize = if (guessReverse) {
@@ -61,7 +73,8 @@ open class AQuizz : AppCompatActivity() {
     }
 
     open fun loadQuestionAfter() { } // virtual function called after the question was loaded
-    
+
+    lateinit var remainingWords: ArrayList<VocabularyInfo>
     lateinit var words: Array<VocabularyInfo>
     lateinit var current: VocabularyInfo
     var guessReverse = false // If true is given the japanese and must guess the english, else is reversed

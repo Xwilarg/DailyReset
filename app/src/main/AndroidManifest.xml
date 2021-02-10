@@ -7,11 +7,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".quizz.QuizzEnd"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".quizz.QuizzChoices"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ui.quizz.WordList"
+            android:name=".WordList"
             android:parentActivityName=".MainActivity" />
 
         <receiver android:name=".DailyLearningWidget">

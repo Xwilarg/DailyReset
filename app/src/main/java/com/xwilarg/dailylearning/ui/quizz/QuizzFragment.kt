@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.xwilarg.dailylearning.R
 import com.xwilarg.dailylearning.VocabularyInfo
+import com.xwilarg.dailylearning.WordList
 import com.xwilarg.dailylearning.quizz.QuizzChoices
-import kotlinx.android.synthetic.main.fragment_quizz.*
 import kotlinx.android.synthetic.main.fragment_quizz.view.*
 import kotlinx.android.synthetic.main.fragment_quizz.view.quizzError
 
