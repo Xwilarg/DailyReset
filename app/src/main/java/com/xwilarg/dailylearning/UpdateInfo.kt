@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import java.time.LocalDate
 import kotlin.random.Random
 
-object  UpdateInfo {
+object UpdateInfo {
     fun updateJapaneseInfo(resources: Resources, context: Context) : SharedPreferences {
         val preferences = context.getSharedPreferences("japaneseInfo", Context.MODE_PRIVATE)
         if (LocalDate.parse(preferences.getString("lastDaily", "1970-01-01")).plusDays(1) < LocalDate.now()) { // Update the current word if last one was taken more than 1 day ago
