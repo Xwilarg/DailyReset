@@ -1,5 +1,7 @@
 package com.xwilarg.dailylearning.ui.settings
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +18,15 @@ class SettingsFragment : Fragment() {
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.preferences, rootKey)
+
+            findPreference<Preference>("version")!!.setOnPreferenceClickListener {
+                val builder = AlertDialog.Builder(activity)
+                builder.setTitle(R.string.app_name)
+                builder.setMessage(getString(R.string.settings_version) + ": " + requireContext().packageManager!!.getPackageInfo(requireContext().packageName, 0)!!.versionName)
+                builder.setPositiveButton("OK") { _: DialogInterface, _: Int -> }
+                builder.create().show()
+                true
+            }
 
             findPreference<Preference>("github")!!.setOnPreferenceClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Xwilarg/DailyLearning")))

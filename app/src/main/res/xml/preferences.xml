@@ -3,6 +3,9 @@
 
     <PreferenceCategory android:title="@string/settings_title_about">
         <Preference
+            app:key="version"
+            app:title="@string/settings_version" />
+        <Preference
             app:key="github"
             app:title="@string/settings_github" />
     </PreferenceCategory>

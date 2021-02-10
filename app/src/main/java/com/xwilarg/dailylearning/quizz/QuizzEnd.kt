@@ -19,10 +19,10 @@ class QuizzEnd : AppCompatActivity() {
         val correct = intent.getSerializableExtra("CORRECT") as Int
         val incorrect = intent.getSerializableExtra("INCORRECT") as Int
         if (correct > 0) {
-            entries.add(PieEntry(correct.toFloat(), "Good answers"))
+            entries.add(PieEntry(correct.toFloat(), getString(R.string.quizz_result_good)))
         }
         if (incorrect > 0) {
-            entries.add(PieEntry(incorrect.toFloat(), "Bad answers"))
+            entries.add(PieEntry(incorrect.toFloat(), getString(R.string.quizz_result_bad)))
         }
         val set = PieDataSet(entries, "Results")
         set.colors = listOf(Color.rgb(200, 255, 200), Color.rgb(255, 200, 200))
