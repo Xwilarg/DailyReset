@@ -35,6 +35,21 @@ object  UpdateInfo {
                 putString("currentMeanings", voc.meaning.joinToString())
                 apply()
             }
+
+            val savedData = Gson().fromJson(context.openFileInput("japaneseLast.txt").bufferedReader().use {
+                it.readText()
+            }, Array<VocabularyInfo>::class.java)
+            val list = savedData.toMutableList()
+            if (!savedData.any{ it.word == voc.word }) // We didn't already saved this word
+            {
+                val addedData = VocabularyInfo(date = LocalDate.now(), word = voc.word, meaning = voc.meaning, reading = voc.reading)
+                list.add(addedData)
+            }
+            context.openFileOutput("japaneseLast.txt", Context.MODE_PRIVATE).use { itRead ->
+                itRead.bufferedWriter().use {
+                    it.write(Gson().toJson(list.toTypedArray()).toString())
+                }
+            }
         }
         return preferences
     }
