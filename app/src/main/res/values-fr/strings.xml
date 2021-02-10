@@ -11,4 +11,6 @@
     <string name="not_available">Cette fonctionnalitée n\'est pas encore disponible</string>
 
     <string name="home_current">Mot du jour:</string>
+
+    <string name="quizz_words">Liste des mots</string>
 </resources>

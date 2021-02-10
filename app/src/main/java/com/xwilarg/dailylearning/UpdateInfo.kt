@@ -36,17 +36,22 @@ object  UpdateInfo {
                 apply()
             }
 
-            val savedData = Gson().fromJson(context.openFileInput("japaneseLast.txt").bufferedReader().use {
-                it.readText()
-            }, Array<VocabularyInfo>::class.java)
+            val savedData = if (context.fileList().contains("japaneseWords.txt")) {
+                Gson().fromJson(context.openFileInput("japaneseWords.txt").bufferedReader().use {
+                    it.readText()
+                }, Array<VocabularyInfo>::class.java)
+            } else {
+                arrayOf()
+            }
+
             val list = savedData.toMutableList()
             if (!savedData.any{ it.word == voc.word }) // We didn't already saved this word
             {
                 val addedData = VocabularyInfo(date = LocalDate.now(), word = voc.word, meaning = voc.meaning, reading = voc.reading)
                 list.add(addedData)
             }
-            context.openFileOutput("japaneseLast.txt", Context.MODE_PRIVATE).use { itRead ->
-                itRead.bufferedWriter().use {
+            context.openFileOutput("japaneseWords.txt", Context.MODE_PRIVATE).use { itWrite ->
+                itWrite.bufferedWriter().use {
                     it.write(Gson().toJson(list.toTypedArray()).toString())
                 }
             }
