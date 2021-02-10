@@ -16,7 +16,7 @@ class WordList : AppCompatActivity() {
             it.readText()
         }, Array<VocabularyInfo>::class.java).forEach {
             findViewById<LinearLayout>(R.id.wordList).addView(TextView(applicationContext).apply {
-                text = it.word + "(" + it.reading + ") - " + it.meaning.joinToString()
+                text = it.word + " (" + it.reading + ") - " + it.meaning.joinToString()
             })
         }
     }
