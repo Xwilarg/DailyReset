@@ -8,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.gson.Gson
 import com.xwilarg.dailylearning.R
 import com.xwilarg.dailylearning.VocabularyInfo
-import com.xwilarg.dailylearning.WordList
 import kotlin.random.Random
 
 open class AQuizz : AppCompatActivity() {
@@ -24,8 +23,14 @@ open class AQuizz : AppCompatActivity() {
         findViewById<TextView>(R.id.textAnswerYou).text = myAnswer
         val rightAnswer = if (guessReverse) { current.meaning[0] } else { current.reading }
         findViewById<TextView>(R.id.textAnswerHim).text = if (guessReverse) { current.meaning[0] } else { current.reading }
+        val isRight = rightAnswer == myAnswer
+        if (isRight) {
+            nbRight++
+        } else {
+            nbWrong++
+        }
         findViewById<ConstraintLayout>(R.id.ConstraintLayoutAnswer).setBackgroundColor(
-            if (rightAnswer == myAnswer) {
+            if (isRight) {
                 Color.rgb(200, 255, 200)
             } else {
                 Color.rgb(255, 200, 200)
@@ -50,7 +55,10 @@ open class AQuizz : AppCompatActivity() {
 
     fun loadQuestion() {
         if (remainingWords.size == 0) {
-            startActivity(Intent(applicationContext, QuizzEnd::class.java))
+            val intent = Intent(applicationContext, QuizzEnd::class.java)
+            intent.putExtra("CORRECT", nbRight)
+            intent.putExtra("INCORRECT", nbWrong)
+            startActivity(intent)
             return
         }
 
@@ -74,6 +82,8 @@ open class AQuizz : AppCompatActivity() {
 
     open fun loadQuestionAfter() { } // virtual function called after the question was loaded
 
+    var nbRight = 0
+    var nbWrong = 0
     lateinit var remainingWords: ArrayList<VocabularyInfo>
     lateinit var words: Array<VocabularyInfo>
     lateinit var current: VocabularyInfo
