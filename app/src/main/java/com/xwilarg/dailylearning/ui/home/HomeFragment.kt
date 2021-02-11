@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val v: View = inflater.inflate(R.layout.fragment_home, container, false)
-        val preferences = UpdateInfo.updateJapaneseInfo(resources, requireActivity())
+        val preferences = UpdateInfo.updateInfo(resources, requireActivity())
         // Update UI
         v.findViewById<TextView>(R.id.dailyWord).text = preferences.getString("currentWord", "")
         v.findViewById<TextView>(R.id.dailyReading).text = preferences.getString("currentReading", "")

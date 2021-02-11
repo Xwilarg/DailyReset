@@ -25,7 +25,11 @@ class QuizzEnd : AppCompatActivity() {
             entries.add(PieEntry(incorrect.toFloat(), getString(R.string.quizz_result_bad)))
         }
         val set = PieDataSet(entries, "Results")
-        set.colors = listOf(Color.rgb(200, 255, 200), Color.rgb(255, 200, 200))
+        set.colors = if (correct > 0 ) {
+            listOf(Color.rgb(200, 255, 200), Color.rgb(255, 200, 200))
+        } else { // If the user got nothing correct, we don't add "green" color to the pie chart
+            listOf(Color.rgb(255, 200, 200))
+        }
         chart.data = PieData(set)
         chart.setEntryLabelColor(Color.BLACK)
         chart.data.setValueTextSize(20f)

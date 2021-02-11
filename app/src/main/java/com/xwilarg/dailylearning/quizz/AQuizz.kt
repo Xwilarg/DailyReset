@@ -2,17 +2,19 @@ package com.xwilarg.dailylearning.quizz
 
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.gson.Gson
 import com.xwilarg.dailylearning.R
+import com.xwilarg.dailylearning.UpdateInfo.getLearntLanguage
 import com.xwilarg.dailylearning.VocabularyInfo
 import kotlin.random.Random
 
 open class AQuizz : AppCompatActivity() {
     fun preload() {
-        words = Gson().fromJson(applicationContext.openFileInput("japaneseWords.txt").bufferedReader().use {
+        words = Gson().fromJson(applicationContext.openFileInput(getLearntLanguage(applicationContext) + "Words.txt").bufferedReader().use {
             it.readText()
         }, Array<VocabularyInfo>::class.java)
         remainingWords = words.copyOf().toCollection(ArrayList())
@@ -41,10 +43,10 @@ open class AQuizz : AppCompatActivity() {
 
     fun getRandomChoices(): ArrayList<String> {
         val choices = arrayListOf<String>()
-        choices.add(if (guessReverse) { current.meaning[0] } else { current.reading })
+        choices.add(if (guessReverse) { current.meaning[0] } else { current.reading ?: current.word })
         while (choices.size < 4 && choices.size != words.size) {
             val random = words[Random.nextInt(0, words.size)]
-            val randomChoice = if (guessReverse) { random.meaning[0] } else { random.reading }
+            val randomChoice = if (guessReverse) { random.meaning[0] } else { random.reading ?: random.word }
             if (!choices.contains(randomChoice)) {
                 choices.add(randomChoice)
             }

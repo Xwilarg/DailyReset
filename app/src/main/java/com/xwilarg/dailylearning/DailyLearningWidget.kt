@@ -36,7 +36,7 @@ internal fun updateAppWidget(
     appWidgetId: Int
 ) {
     val views = RemoteViews(context.packageName, R.layout.daily_learning_widget)
-    val preferences = UpdateInfo.updateJapaneseInfo(context.resources, context)
+    val preferences = UpdateInfo.updateInfo(context.resources, context)
 
     views.setTextViewText(R.id.widgetWord, preferences.getString("currentWord", ""))
     views.setTextViewText(R.id.widgetReading, preferences.getString("currentReading", ""))

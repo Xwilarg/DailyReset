@@ -9,6 +9,9 @@
     <string name="settings_github">GitHub</string>
     <string name="settings_version">Version</string>
 
+    <string name="settings_title_language">Langue</string>
+    <string name="settings_language">Langue étudiée</string>
+
     <string name="not_available">Cette fonctionnalitée n\'est pas encore disponible</string>
 
     <string name="home_current">Mot du jour:</string>

@@ -1,14 +1,17 @@
 package com.xwilarg.dailylearning.ui.settings
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.xwilarg.dailylearning.R
@@ -30,6 +33,17 @@ class SettingsFragment : Fragment() {
 
             findPreference<Preference>("github")!!.setOnPreferenceClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Xwilarg/DailyLearning")))
+                true
+            }
+
+            val preferences = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
+            val language = findPreference<ListPreference>("language")!!
+            language.value = preferences.getString("language", "ja")
+            language.setOnPreferenceChangeListener { preference: Preference, any: Any ->
+                with (preferences.edit()) {
+                    putString("language", any.toString())
+                    apply()
+                }
                 true
             }
         }

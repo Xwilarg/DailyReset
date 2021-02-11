@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.xwilarg.dailylearning.R
+import com.xwilarg.dailylearning.UpdateInfo
 import com.xwilarg.dailylearning.VocabularyInfo
 import com.xwilarg.dailylearning.WordList
 import com.xwilarg.dailylearning.quizz.QuizzChoices
@@ -30,7 +31,7 @@ class QuizzFragment : Fragment() {
         quizzButton.setOnClickListener {
             startActivity(Intent(activity, QuizzChoices::class.java))
         }
-        if (Gson().fromJson(requireContext().openFileInput("japaneseWords.txt").bufferedReader().use {
+        if (Gson().fromJson(requireContext().openFileInput(UpdateInfo.getLearntLanguage(requireContext()) + "Words.txt").bufferedReader().use {
                 it.readText()
             }, Array<VocabularyInfo>::class.java).size < 2) {
             quizzButton.isEnabled = false
