@@ -17,7 +17,7 @@ object UpdateInfo {
     fun updateInfo(resources: Resources, context: Context) : SharedPreferences {
         val lang = getLearntLanguage(context)
         val preferences = context.getSharedPreferences(lang + "Info", Context.MODE_PRIVATE)
-        if (LocalDate.parse(preferences.getString("lastDaily", "1970-01-01")).plusDays(1) < LocalDate.now()) { // Update the current word if last one was taken more than 1 day ago
+        if (LocalDate.parse(preferences.getString("lastDaily", "1970-01-01")) < LocalDate.now()) { // Update the current word if last one was taken more than 1 day ago
 
             val voc = when (lang) {
                 "ja" -> {
