@@ -29,10 +29,14 @@
 
     <string name="quizz_result_good">Bonne réponses</string>
     <string name="quizz_result_bad">Mauvaise réponses</string>
+    <string name="quizz_send">Envoyer</string>
+    <string name="quizz_clear">Effacer</string>
 
     <string name="quizz_end_title">Vous avez atteint la fin du quizz.</string>
 
     <string name="ocr_download">Voulez-vous télécharger les données pour l\'OCR? Une connection Internet est requise</string>
     <string name="ocr_downloading">Données en cours de téléchargement, veuillez patienter…</string>
     <string name="ocr_error">Une erreur est parvenu lors du téléchargement des données de l\'OCR : </string>
+
+    <string name="other_error">Une erreur innatendu est parvenu: </string>
 </resources>

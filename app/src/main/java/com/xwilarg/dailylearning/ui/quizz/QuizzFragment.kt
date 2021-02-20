@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +14,9 @@ import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.common.model.RemoteModelManager
 import com.google.mlkit.vision.digitalink.DigitalInkRecognitionModel
 import com.google.mlkit.vision.digitalink.DigitalInkRecognitionModelIdentifier
-import com.xwilarg.dailylearning.R
-import com.xwilarg.dailylearning.UpdateInfo
-import com.xwilarg.dailylearning.VocabularyInfo
-import com.xwilarg.dailylearning.WordList
+import com.xwilarg.dailylearning.*
 import com.xwilarg.dailylearning.quizz.QuizzChoices
+import com.xwilarg.dailylearning.quizz.QuizzFree
 import kotlinx.android.synthetic.main.fragment_quizz.view.*
 import kotlinx.android.synthetic.main.fragment_quizz.view.quizzError
 
@@ -47,7 +44,7 @@ class QuizzFragment : Fragment() {
 
             remoteModelManager.isModelDownloaded(model).addOnSuccessListener { res: Boolean ->
                 if (res) { // Model already downloaded
-                    startActivity(Intent(activity, QuizzChoices::class.java))
+                    startActivity(Intent(activity, QuizzFree::class.java))
                 } else {
                     val builder = AlertDialog.Builder(activity)
                     builder.setMessage(getString(R.string.ocr_download))
@@ -60,7 +57,7 @@ class QuizzFragment : Fragment() {
 
                         remoteModelManager.download(model, DownloadConditions.Builder().build())
                             .addOnSuccessListener { // Data downloaded
-                                startActivity(Intent(activity, QuizzChoices::class.java))
+                                startActivity(Intent(activity, QuizzFree::class.java))
                             }
                             .addOnFailureListener { e: Exception ->
                                 pD.dismiss()

@@ -28,10 +28,15 @@
 
     <string name="quizz_result_good">Good answers</string>
     <string name="quizz_result_bad">Bad answers</string>
+    <string name="quizz_send">Send</string>
+    <string name="quizz_clear">Clear</string>
+
 
     <string name="quizz_end_title">You reached the end of the quizz.</string>
 
     <string name="ocr_download">Do you want to download OCR data? You will need an internet connection</string>
     <string name="ocr_downloading">Data are being downloaded, please wait…</string>
     <string name="ocr_error">An error occurred while downloading OCR data: </string>
+
+    <string name="other_error">An unexpected error occurred: </string>
 </resources>
