@@ -5,12 +5,18 @@
     <string name="title_quizz">Quizz</string>
     <string name="title_settings">Paramètres</string>
 
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
     <string name="settings_title_about">A propos</string>
     <string name="settings_github">GitHub</string>
     <string name="settings_version">Version</string>
 
     <string name="settings_title_language">Langue</string>
     <string name="settings_language">Langue étudiée</string>
+
+    <string name="quizz_choices">Choix multiple</string>
+    <string name="quizz_free">Text libre</string>
 
     <string name="not_available">Cette fonctionnalitée n\'est pas encore disponible</string>
 
@@ -25,4 +31,8 @@
     <string name="quizz_result_bad">Mauvaise réponses</string>
 
     <string name="quizz_end_title">Vous avez atteint la fin du quizz.</string>
+
+    <string name="ocr_download">Voulez-vous télécharger les données pour l\'OCR? Une connection Internet est requise</string>
+    <string name="ocr_downloading">Données en cours de téléchargement, veuillez patienter…</string>
+    <string name="ocr_error">Une erreur est parvenu lors du téléchargement des données de l\'OCR : </string>
 </resources>
