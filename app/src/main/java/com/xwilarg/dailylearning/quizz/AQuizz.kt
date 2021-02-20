@@ -22,9 +22,8 @@ open class AQuizz : AppCompatActivity() {
     }
 
     fun checkAnswer(myAnswer: List<String>) {
-        val rightAnswer = getRightAnswer()
         for(a in myAnswer) {
-            if (a == rightAnswer) {
+            if (a == getRightAnswer(a)) {
                 checkAnswer(a)
                 return
             }
@@ -32,14 +31,17 @@ open class AQuizz : AppCompatActivity() {
         checkAnswer(myAnswer[0])
     }
 
-    private fun getRightAnswer(): String? {
+    private fun getRightAnswer(myAnswer: String): String? {
+        if (current.meaning.contains(myAnswer)) {
+            return myAnswer
+        }
         return if (guessReverse) { current.meaning[0] } else { current.reading }
     }
 
     fun checkAnswer(myAnswer: String) {
         findViewById<TextView>(R.id.textAnswerYou).text = myAnswer
-        val rightAnswer = getRightAnswer()
-        findViewById<TextView>(R.id.textAnswerHim).text = if (guessReverse) { current.meaning[0] } else { current.reading }
+        val rightAnswer = getRightAnswer(myAnswer)
+        findViewById<TextView>(R.id.textAnswerHim).text = rightAnswer
         val isRight = rightAnswer == myAnswer
         if (isRight) {
             nbRight++
