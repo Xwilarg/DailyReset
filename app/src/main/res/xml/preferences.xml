@@ -1,6 +1,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory android:title="@string/title_quizz">
+
+        <EditTextPreference
+            android:key="questionCount"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/settings_question_count" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_title_language">
         <ListPreference
             android:entries="@array/language"

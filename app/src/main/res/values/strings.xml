@@ -14,6 +14,8 @@
     <string name="settings_title_language">Language</string>
     <string name="settings_language">Language studied</string>
 
+    <string name="settings_question_count">Number max of questions per quizz</string>
+
     <string name="quizz_choices">Multiple choices</string>
     <string name="quizz_free">Free text</string>
 
