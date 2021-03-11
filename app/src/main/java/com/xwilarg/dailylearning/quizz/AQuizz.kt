@@ -1,5 +1,6 @@
 package com.xwilarg.dailylearning.quizz
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
@@ -14,10 +15,22 @@ import kotlin.random.Random
 
 open class AQuizz : AppCompatActivity() {
     fun preload() {
-        words = Gson().fromJson(applicationContext.openFileInput(getLearntLanguage(applicationContext) + "Words.txt").bufferedReader().use {
+        val original = Gson().fromJson(applicationContext.openFileInput(getLearntLanguage(applicationContext) + "Words.txt").bufferedReader().use {
             it.readText()
-        }, Array<VocabularyInfo>::class.java)
-        remainingWords = words.copyOf().toCollection(ArrayList())
+        }, Array<VocabularyInfo>::class.java).copyOf().toCollection(ArrayList())
+        val preferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val questionCount = preferences.getString("questionCount", "20")!!.toInt()
+        if (original.size <= questionCount) {
+            words = original
+        } else {
+            words = ArrayList()
+            while (words.size < questionCount) {
+                val index = Random.nextInt(0, original.size)
+                words.add(original[index])
+                original.removeAt(index)
+            }
+        }
+        remainingWords = words.toCollection(ArrayList())
         loadQuestion()
     }
 
@@ -104,7 +117,7 @@ open class AQuizz : AppCompatActivity() {
     var nbRight = 0
     var nbWrong = 0
     lateinit var remainingWords: ArrayList<VocabularyInfo>
-    lateinit var words: Array<VocabularyInfo>
+    lateinit var words: ArrayList<VocabularyInfo>
     lateinit var current: VocabularyInfo
     var guessReverse = false // If true is given the japanese and must guess the english, else is reversed
 }
