@@ -15,6 +15,10 @@
     <string name="settings_title_language">Langue</string>
     <string name="settings_language">Langue étudiée</string>
 
+    <string name="settings_title_backup">Sauvegarder</string>
+    <string name="settings_backup">Exporter les mots étudiées</string>
+    <string name="settings_explanation">Les données ont été copié dans votre presse-papier, veuillez les garder dans un lieu sûr.</string>
+
     <string name="settings_question_count">Nombre max de questions par quizz</string>
 
     <string name="quizz_choices">Choix multiple</string>
@@ -23,6 +27,9 @@
     <string name="not_available">Cette fonctionnalitée n\'est pas encore disponible</string>
 
     <string name="home_current">Mot du jour:</string>
+
+    <string name="quizz_title_training">Entrainement</string>
+    <string name="quizz_title_exam">Examen</string>
 
     <string name="quizz_words">Liste des mots</string>
     <string name="quizz_your_answer">Votre réponse:</string>

@@ -15,6 +15,8 @@ import kotlin.random.Random
 
 open class AQuizz : AppCompatActivity() {
     fun preload() {
+        isTraining = intent.getSerializableExtra("IS_TRAINING") as Boolean
+
         val original = Gson().fromJson(applicationContext.openFileInput(getLearntLanguage(applicationContext) + "Words.txt").bufferedReader().use {
             it.readText()
         }, Array<VocabularyInfo>::class.java).copyOf().toCollection(ArrayList())
@@ -61,6 +63,13 @@ open class AQuizz : AppCompatActivity() {
         } else {
             nbWrong++
         }
+
+        // No verification to do on exam mode
+        // However for training more we only remove the answer if we are right
+        if (!isTraining || isRight) {
+            remainingWords.removeAt(currentIndex)
+        }
+
         findViewById<ConstraintLayout>(R.id.ConstraintLayoutAnswer).setBackgroundColor(
             if (isRight) {
                 Color.rgb(200, 255, 200)
@@ -95,29 +104,31 @@ open class AQuizz : AppCompatActivity() {
         }
 
         // Get next question
-        val index = Random.nextInt(remainingWords.size)
-        current = remainingWords[index]
-        remainingWords.removeAt(index)
+        currentIndex = Random.nextInt(remainingWords.size)
+        current = remainingWords[currentIndex]
 
         guessReverse = Random.nextInt(0, 2) == 0
+        val textQuizz = findViewById<TextView>(R.id.textQuizz)
         // Resize text depending if the question contains only the kanji or a list of words
-        findViewById<TextView>(R.id.textQuizz).textSize = if (guessReverse) {
+        textQuizz.textSize = if (guessReverse) {
             50f
         } else {
             20f
         }
         // textQuizz is the question and textQuizzHelp is a small text under it displayed as a help
-        findViewById<TextView>(R.id.textQuizz).text = if (guessReverse) { current.word } else { current.meaning.joinToString() }
+        textQuizz.text = if (guessReverse) { current.word } else { current.meaning.joinToString() }
         findViewById<TextView>(R.id.textQuizzHelp).text = if (guessReverse) { current.reading } else { "" }
         loadQuestionAfter()
     }
 
     open fun loadQuestionAfter() { } // virtual function called after the question was loaded
 
-    var nbRight = 0
-    var nbWrong = 0
-    lateinit var remainingWords: ArrayList<VocabularyInfo>
-    lateinit var words: ArrayList<VocabularyInfo>
-    lateinit var current: VocabularyInfo
-    var guessReverse = false // If true is given the japanese and must guess the english, else is reversed
+    private var nbRight = 0
+    private var nbWrong = 0
+    private lateinit var remainingWords: ArrayList<VocabularyInfo>
+    private lateinit var words: ArrayList<VocabularyInfo>
+    private lateinit var current: VocabularyInfo
+    private var currentIndex = -1 // Index in remainingWords for current
+    private var isTraining = false
+    private var guessReverse = false // If true is given the japanese and must guess the english, else is reversed
 }

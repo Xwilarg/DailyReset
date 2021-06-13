@@ -17,6 +17,12 @@
             android:title="@string/settings_language" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="Preference category">
+        <Preference
+            android:id="@+id/backup"
+            app:key="backup"
+            app:title="@string/settings_backup" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_title_about">
         <Preference
             app:key="version"
