@@ -11,14 +11,12 @@
     <string name="settings_github">GitHub</string>
     <string name="settings_version">Version</string>
 
-    <string name="settings_title_language">Language</string>
-    <string name="settings_language">Language studied</string>
-
     <string name="settings_title_backup">Backup</string>
     <string name="settings_backup">Export studied words</string>
     <string name="settings_explanation">Data were saved in your clipboard, please keep them in a safe place.</string>
 
     <string name="settings_question_count">Number max of questions per quizz</string>
+    <string name="settings_language">Language studied</string>
 
     <string name="quizz_choices">Multiple choices</string>
     <string name="quizz_free">Free text</string>
@@ -39,7 +37,6 @@
     <string name="quizz_result_bad">Bad answers</string>
     <string name="quizz_send">Send</string>
     <string name="quizz_clear">Clear</string>
-
 
     <string name="quizz_end_title">You reached the end of the quizz.</string>
 

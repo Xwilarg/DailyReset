@@ -8,8 +8,6 @@
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="@string/settings_question_count" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/settings_title_language">
         <ListPreference
             android:entries="@array/language"
             android:entryValues="@array/languageAlias"
@@ -17,7 +15,7 @@
             android:title="@string/settings_language" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Preference category">
+    <PreferenceCategory android:title="@string/settings_title_backup">
         <Preference
             android:id="@+id/backup"
             app:key="backup"
