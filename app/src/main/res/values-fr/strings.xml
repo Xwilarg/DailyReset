@@ -38,6 +38,7 @@
     <string name="quizz_result_bad">Mauvaise réponses</string>
     <string name="quizz_send">Envoyer</string>
     <string name="quizz_clear">Effacer</string>
+    <string name="quizz_help">Aide</string>
 
     <string name="quizz_end_title">Vous avez atteint la fin du quizz.</string>
 

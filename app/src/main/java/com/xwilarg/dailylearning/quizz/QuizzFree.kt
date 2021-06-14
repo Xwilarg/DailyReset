@@ -28,4 +28,8 @@ class QuizzFree : AQuizz() {
     fun clear(view: View) {
         findViewById<DrawingView>(R.id.viewDraw).clear()
     }
+
+    fun help(view: View) {
+        displayHelpPopup()
+    }
 }

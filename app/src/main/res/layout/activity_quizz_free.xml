@@ -80,6 +80,17 @@
             app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <Button
+            android:id="@+id/buttonHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="help"
+            android:text="@string/quizz_help"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAnswer"
+            app:layout_constraintStart_toEndOf="@+id/buttonClear"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+        <Button
             android:id="@+id/buttonAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

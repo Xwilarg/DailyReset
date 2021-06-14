@@ -1,9 +1,12 @@
 package com.xwilarg.dailylearning.quizz
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,11 +14,18 @@ import com.google.gson.Gson
 import com.xwilarg.dailylearning.R
 import com.xwilarg.dailylearning.UpdateInfo.getLearntLanguage
 import com.xwilarg.dailylearning.VocabularyInfo
+import kotlinx.android.synthetic.main.fragment_quizz.view.*
 import kotlin.random.Random
 
 open class AQuizz : AppCompatActivity() {
     fun preload() {
         isTraining = intent.getSerializableExtra("IS_TRAINING") as Boolean
+        if (!isTraining) {
+            val helpButton = findViewById<Button>(R.id.buttonHelp)
+            if (helpButton != null) {
+                helpButton.isEnabled = false
+            }
+        }
 
         val original = Gson().fromJson(applicationContext.openFileInput(getLearntLanguage(applicationContext) + "Words.txt").bufferedReader().use {
             it.readText()
@@ -34,6 +44,13 @@ open class AQuizz : AppCompatActivity() {
         }
         remainingWords = words.toCollection(ArrayList())
         loadQuestion()
+    }
+
+    fun displayHelpPopup() {
+        didAskForHelp = true
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(current.word + "\n" + current.reading + "\n\n" + current.meaning.joinToString())
+        builder.create().show()
     }
 
     fun checkAnswer(myAnswer: List<String>) {
@@ -57,11 +74,19 @@ open class AQuizz : AppCompatActivity() {
         findViewById<TextView>(R.id.textAnswerYou).text = myAnswer
         val rightAnswer = getRightAnswer(myAnswer)
         findViewById<TextView>(R.id.textAnswerHim).text = rightAnswer
-        val isRight = rightAnswer == myAnswer
-        if (isRight) {
-            nbRight++
+        var isRight = rightAnswer == myAnswer
+        val color: Int = if (isRight) {
+            if (didAskForHelp) {
+                nbWrong++
+                isRight = false
+                Color.rgb(255, 255, 200)
+            } else {
+                nbRight++
+                Color.rgb(200, 255, 200)
+            }
         } else {
             nbWrong++
+            Color.rgb(255, 200, 200)
         }
 
         // No verification to do on exam mode
@@ -70,13 +95,7 @@ open class AQuizz : AppCompatActivity() {
             remainingWords.removeAt(currentIndex)
         }
 
-        findViewById<ConstraintLayout>(R.id.ConstraintLayoutAnswer).setBackgroundColor(
-            if (isRight) {
-                Color.rgb(200, 255, 200)
-            } else {
-                Color.rgb(255, 200, 200)
-            }
-        )
+        findViewById<ConstraintLayout>(R.id.ConstraintLayoutAnswer).setBackgroundColor(color)
         loadQuestion()
     }
 
@@ -102,6 +121,7 @@ open class AQuizz : AppCompatActivity() {
             startActivity(intent)
             return
         }
+        didAskForHelp = false
 
         // Get next question
         currentIndex = Random.nextInt(remainingWords.size)
@@ -131,4 +151,5 @@ open class AQuizz : AppCompatActivity() {
     private var currentIndex = -1 // Index in remainingWords for current
     private var isTraining = false
     private var guessReverse = false // If true is given the japanese and must guess the english, else is reversed
+    private var didAskForHelp = false
 }
