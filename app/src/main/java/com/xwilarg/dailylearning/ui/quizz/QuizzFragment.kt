@@ -47,9 +47,11 @@ class QuizzFragment : Fragment() {
         freeButtonExam.setOnClickListener {
             startFreeQuizz(false)
         }
-        if (Gson().fromJson(requireContext().openFileInput(UpdateInfo.getLearntLanguage(requireContext()) + "Words.txt").bufferedReader().use {
-                it.readText()
-            }, Array<VocabularyInfo>::class.java).size < 2) {
+        val data = Gson().fromJson(requireContext().openFileInput(UpdateInfo.getLearntLanguage(requireContext()) + "Words.txt").bufferedReader().use {
+            it.readText()
+        }, Array<VocabularyInfo>::class.java)
+        // Quizz can't be enabled if there is not enough data
+        if (data.size < 2) {
             quizzButtonTraining.isEnabled = false
             freeButtonTraining.isEnabled = false
             quizzButtonExam.isEnabled = false

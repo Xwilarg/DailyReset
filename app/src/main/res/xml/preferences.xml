@@ -15,11 +15,17 @@
             android:title="@string/settings_language" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/settings_title_backup">
+    <PreferenceCategory android:title="@string/settings_title_data">
         <Preference
             android:id="@+id/backup"
             app:key="backup"
             app:title="@string/settings_backup" />
+        <Preference
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:key="delete"
+            app:title="@string/settings_delete" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_title_about">
         <Preference

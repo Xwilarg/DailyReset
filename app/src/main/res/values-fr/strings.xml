@@ -7,13 +7,17 @@
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="confirm">Confirmer</string>
+    <string name="cancel">Annuler</string>
 
     <string name="settings_title_about">A propos</string>
     <string name="settings_github">GitHub</string>
     <string name="settings_version">Version</string>
 
-    <string name="settings_title_backup">Sauvegarder</string>
+    <string name="settings_title_data">Données</string>
     <string name="settings_backup">Exporter les mots étudiées</string>
+    <string name="settings_delete">Tout supprimer</string>
+    <string name="settings_warning">Cette action est définitive</string>
     <string name="settings_explanation">Les données ont été copié dans votre presse-papier, veuillez les garder dans un lieu sûr.</string>
 
     <string name="settings_question_count">Nombre max de questions par quizz</string>

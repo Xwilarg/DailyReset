@@ -49,6 +49,7 @@ class SettingsFragment : Fragment() {
                 true
             }
 
+            // Get current data and save them in clipboard
             findPreference<Preference>("backup")!!.setOnPreferenceClickListener {
                 val lang = getLearntLanguage(requireContext())
                 val text = requireContext().openFileInput(lang + "Words.txt").bufferedReader().readText()
@@ -63,6 +64,37 @@ class SettingsFragment : Fragment() {
                     getString(R.string.settings_explanation)
                 )
                 builder.setPositiveButton("OK") { _: DialogInterface, _: Int -> }
+                builder.create().show()
+                true
+            }
+
+            // Delete all saved data about current language
+            findPreference<Preference>("delete")!!.setOnPreferenceClickListener {
+                val builder = AlertDialog.Builder(activity)
+                builder.setTitle(R.string.app_name)
+                builder.setMessage(
+                    getString(R.string.settings_warning)
+                )
+                builder.setPositiveButton(R.string.confirm) { _: DialogInterface, _: Int ->
+                    run {
+                        // Delete all words
+                        val lang = getLearntLanguage(requireContext())
+                        requireContext().openFileOutput(lang + "Words.txt", Context.MODE_PRIVATE)
+                            .use { itWrite ->
+                                itWrite.bufferedWriter().use {
+                                    it.write("[]")
+                                }
+                            }
+
+                        // Unset last daily value
+                        val preferences =  requireContext().getSharedPreferences(lang + "Info", Context.MODE_PRIVATE)
+                        with (preferences.edit()) {
+                            putString("lastDaily", "1970-01-01")
+                            apply()
+                        }
+                    }
+                }
+                builder.setNegativeButton(R.string.cancel) { _: DialogInterface, _: Int -> }
                 builder.create().show()
                 true
             }

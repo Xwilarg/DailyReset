@@ -6,13 +6,17 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 
     <string name="settings_title_about">About</string>
     <string name="settings_github">GitHub</string>
     <string name="settings_version">Version</string>
 
-    <string name="settings_title_backup">Backup</string>
+    <string name="settings_title_data">Data</string>
     <string name="settings_backup">Export studied words</string>
+    <string name="settings_delete">Delete all</string>
+    <string name="settings_warning">This action cannot be undone</string>
     <string name="settings_explanation">Data were saved in your clipboard, please keep them in a safe place.</string>
 
     <string name="settings_question_count">Number max of questions per quizz</string>
