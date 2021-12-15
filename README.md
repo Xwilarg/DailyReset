@@ -8,3 +8,5 @@ The application will give you a word everyday, do you best to memorize them and 
 ## Dictionnaries used
 **Japanese dictionary** is an API dump of [Jisho](https://jisho.org)<br/>
 **Korean dictionary** is an export of a [Korean vocabulary card from Anki](https://ankiweb.net/shared/info/4066961604)
+
+Sentences are from [Tatoeba database](https://tatoeba.org/en/downloads)
