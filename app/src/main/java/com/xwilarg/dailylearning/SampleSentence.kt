@@ -2,7 +2,6 @@ package com.xwilarg.dailylearning
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -21,9 +20,11 @@ class SampleSentence : AppCompatActivity() {
         }, Array<SentenceInfo>::class.java)
         val lang = UpdateInfo.getLearntLanguage(applicationContext)
         val preferences = applicationContext.getSharedPreferences(lang + "Info", Context.MODE_PRIVATE)
-        Log.e("", preferences.getString("currentWord", "").toString())
         val filtered = translations.filter { info ->
-            preferences.getString("currentWord", "").toString() in info.sentence
+            preferences.getString("currentWord", "").toString() in info.sentence &&
+            preferences.getString("currentMeanings", "").toString().split(',').any { e ->
+                 e.trim() in info.translation
+            }
         }
         findViewById<TextView>(R.id.sentence).text = filtered[0].sentence
         findViewById<TextView>(R.id.translation).text = filtered[0].translation
