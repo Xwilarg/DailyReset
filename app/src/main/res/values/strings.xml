@@ -33,6 +33,7 @@
     <string name="quizz_title_exam">Exam</string>
 
     <string name="quizz_words">Word list</string>
+    <string name="quizz_sentences">Sample sentences</string>
     <string name="quizz_your_answer">Your answer:</string>
     <string name="quizz_right_answer">Correct answer:</string>
     <string name="quizz_error">You must learn at least 2 words before doing a quizz, come back tomorrow.</string>

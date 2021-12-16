@@ -27,9 +27,6 @@ class QuizzFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val v: View = inflater.inflate(R.layout.fragment_quizz, container, false)
-        (v.buttonWordList as Button).setOnClickListener {
-            startActivity(Intent(activity, WordList::class.java))
-        }
 
         val quizzButtonTraining = (v.buttonQuizzTraining as Button)
         val freeButtonTraining = (v.buttonFreeTraining as Button)
