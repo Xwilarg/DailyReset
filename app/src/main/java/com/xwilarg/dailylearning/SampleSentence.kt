@@ -5,28 +5,37 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class SampleSentence : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sample_sentence)
-        val file = if (UpdateInfo.getLearntLanguage(applicationContext) == "ja") {
-            R.raw.sentences_ja
-        } else {
-            R.raw.sentences_kr
-        }
-        val translations = Gson().fromJson(resources.openRawResource(file).bufferedReader().use {
-            it.readText()
-        }, Array<SentenceInfo>::class.java)
+
         val lang = UpdateInfo.getLearntLanguage(applicationContext)
         val preferences = applicationContext.getSharedPreferences(lang + "Info", Context.MODE_PRIVATE)
-        val filtered = translations.filter { info ->
-            preferences.getString("currentWord", "").toString() in info.sentence &&
-            preferences.getString("currentMeanings", "").toString().split(',').any { e ->
-                 e.trim() in info.translation
+        findViewById<TextView>(R.id.word).text = preferences.getString("currentWord", "")
+        findViewById<TextView>(R.id.sentence).text = getString(R.string.loading)
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val file = if (UpdateInfo.getLearntLanguage(applicationContext) == "ja") {
+                R.raw.sentences_ja
+            } else {
+                R.raw.sentences_kr
             }
+            val translations = Gson().fromJson(resources.openRawResource(file).bufferedReader().use {
+                it.readText()
+            }, Array<SentenceInfo>::class.java)
+            val filtered = translations.filter { info ->
+                preferences.getString("currentWord", "").toString() in info.sentence &&
+                        preferences.getString("currentMeanings", "").toString().split(',').any { e ->
+                            e.trim() in info.translation
+                        }
+            }
+            findViewById<TextView>(R.id.sentence).text = filtered[0].sentence
+            findViewById<TextView>(R.id.translation).text = filtered[0].translation
         }
-        findViewById<TextView>(R.id.sentence).text = filtered[0].sentence
-        findViewById<TextView>(R.id.translation).text = filtered[0].translation
     }
 }
