@@ -2,7 +2,9 @@
 DailyReset is an application to help you learning a new language.<br/>
 The application will give you a word everyday, do you best to memorize them and test your knowledge with a quizz.
 
-<img src="preview/preview-1.jpg" width="250" alt="Preview 01"/> <img src="preview/preview-2.jpg" width="250" alt="Preview 02"/> <img src="preview/preview-3.jpg" width="250" alt="Preview 03"/><br/>
+| ![Preview Main](preview/preview-1.png) | ![Preview Quizz](preview/preview-3.jpg) | ![Preview Result](preview/preview-2.jpg) | ![Preview Sentence](preview/preview-4.png) |
+| -------------------------------------- | --------------------------------------- | ---------------------------------------- | ------------------------------------------ |
+| Main page                              | Quizz                                   | Quizz result                             | Sample sentences                           |
 <sup>Preview images may not be from the latest version of the app</sup>
 
 ## Dictionnaries used

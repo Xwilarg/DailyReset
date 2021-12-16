@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class SampleSentence : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +35,13 @@ class SampleSentence : AppCompatActivity() {
                             e.trim() in info.translation
                         }
             }
-            findViewById<TextView>(R.id.sentence).text = filtered[0].sentence
-            findViewById<TextView>(R.id.translation).text = filtered[0].translation
+            if (filtered.isNotEmpty()) {
+                val rand = filtered[Random.nextInt(filtered.size)]
+                findViewById<TextView>(R.id.sentence).text = rand.sentence
+                findViewById<TextView>(R.id.translation).text = rand.translation
+            } else {
+                findViewById<TextView>(R.id.sentence).text = getString(R.string.quizz_no_sentence)
+            }
         }
     }
 }
