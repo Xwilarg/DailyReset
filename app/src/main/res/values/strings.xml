@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DailyReset</string>
     <string name="title_home">Home</string>
+    <string name="title_calendar">Calendar</string>
     <string name="title_quizz">Quizz</string>
     <string name="title_settings">Settings</string>
 
@@ -19,7 +20,7 @@
     <string name="settings_backup">Export studied words</string>
     <string name="settings_delete">Delete all</string>
     <string name="settings_warning">This action cannot be undone</string>
-    <string name="settings_explanation">Data were saved in your clipboard, please keep them in a safe place.</string>
+    <string name="settings_explanation">Your data were saved in your clipboard, please keep them in a safe place.</string>
 
     <string name="settings_question_count">Number max of questions per quizz</string>
     <string name="settings_language">Language studied</string>

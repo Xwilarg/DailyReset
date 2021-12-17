@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">DailyReset</string>
     <string name="title_home">Accueil</string>
+    <string name="title_calendar">Calendrier</string>
     <string name="title_quizz">Quizz</string>
     <string name="title_settings">Paramètres</string>
 
@@ -20,7 +21,7 @@
     <string name="settings_backup">Exporter les mots étudiées</string>
     <string name="settings_delete">Tout supprimer</string>
     <string name="settings_warning">Cette action est définitive</string>
-    <string name="settings_explanation">Les données ont été copié dans votre presse-papier, veuillez les garder dans un lieu sûr.</string>
+    <string name="settings_explanation">Vos données ont été copié dans votre presse-papier, veuillez les garder dans un lieu sûr.</string>
 
     <string name="settings_question_count">Nombre max de questions par quizz</string>
     <string name="settings_language">Langue étudiée</string>

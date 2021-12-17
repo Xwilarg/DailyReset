@@ -1,4 +1,4 @@
-package com.xwilarg.dailylearning;
+package com.xwilarg.dailylearning
 
 import android.app.AlertDialog
 import android.content.Context
