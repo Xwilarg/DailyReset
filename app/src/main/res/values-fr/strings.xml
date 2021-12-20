@@ -11,7 +11,8 @@
     <string name="confirm">Confirmer</string>
     <string name="cancel">Annuler</string>
 
-    <string name="loading">Chargement en cours...</string>
+    <string name="loading">Chargement en cours…</string>
+    <string name="streak">Série actuelle : %1$d</string>
 
     <string name="settings_title_about">A propos</string>
     <string name="settings_github">GitHub</string>

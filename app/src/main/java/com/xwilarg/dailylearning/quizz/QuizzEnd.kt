@@ -50,7 +50,7 @@ class QuizzEnd : AppCompatActivity() {
                 val today = LocalDate.now().toString()
                 // Nothing to do if we already validated the exam today
                 if (!dates!!.contains(today)) {
-                    val tmp = dates!!.toMutableSet()
+                    val tmp = dates.toMutableSet()
                     tmp.add(today)
                     putStringSet("succeedDates", tmp)
                     apply()

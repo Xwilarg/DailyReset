@@ -60,11 +60,8 @@ class QuizzFragment : Fragment() {
             v.quizzError.text = getString(R.string.quizz_error)
         }
 
-        val lang = UpdateInfo.getLearntLanguage(requireContext())
-        val preferences = requireContext().getSharedPreferences(lang + "Info", Context.MODE_PRIVATE)
-        val dates = preferences.getStringSet("succeedDates", emptySet())
         val examStatus = v.findViewById<TextView>(R.id.examStatus)
-        val todayValidated = dates!!.contains(LocalDate.now().toString())
+        val todayValidated = UpdateInfo.didSucceedExamAtDate(requireContext(), LocalDate.now())
         examStatus.text = if (todayValidated) {
             getString(R.string.exam_validated)
         } else {

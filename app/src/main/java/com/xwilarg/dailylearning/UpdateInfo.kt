@@ -14,6 +14,13 @@ object UpdateInfo {
         return preferences.getString("language", "ja")
     }
 
+    fun didSucceedExamAtDate(context: Context, date: LocalDate): Boolean {
+        val tP = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val preferences = context.getSharedPreferences(tP.getString("language", "ja") + "Info", Context.MODE_PRIVATE)
+        val dates = preferences.getStringSet("succeedDates", emptySet())
+        return dates!!.contains(date.toString())
+    }
+
     fun updateInfo(resources: Resources, context: Context) : SharedPreferences {
         val lang = getLearntLanguage(context)
         val preferences = context.getSharedPreferences(lang + "Info", Context.MODE_PRIVATE)
