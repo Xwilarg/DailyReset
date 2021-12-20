@@ -1,13 +1,16 @@
 package com.xwilarg.dailylearning.ui.quizz
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.google.mlkit.common.model.DownloadConditions
@@ -19,6 +22,7 @@ import com.xwilarg.dailylearning.quizz.QuizzChoices
 import com.xwilarg.dailylearning.quizz.QuizzFree
 import kotlinx.android.synthetic.main.fragment_quizz.view.*
 import kotlinx.android.synthetic.main.fragment_quizz.view.quizzError
+import java.time.LocalDate
 
 class QuizzFragment : Fragment() {
 
@@ -55,6 +59,22 @@ class QuizzFragment : Fragment() {
             freeButtonExam.isEnabled = false
             v.quizzError.text = getString(R.string.quizz_error)
         }
+
+        val lang = UpdateInfo.getLearntLanguage(requireContext())
+        val preferences = requireContext().getSharedPreferences(lang + "Info", Context.MODE_PRIVATE)
+        val dates = preferences.getStringSet("succeedDates", emptySet())
+        val examStatus = v.findViewById<TextView>(R.id.examStatus)
+        val todayValidated = dates!!.contains(LocalDate.now().toString())
+        examStatus.text = if (todayValidated) {
+            getString(R.string.exam_validated)
+        } else {
+            getString(R.string.exam_not_validated)
+        }
+        examStatus.setTextColor(if (todayValidated) {
+            Color.GREEN
+        } else {
+            Color.RED
+        })
         return v
     }
 

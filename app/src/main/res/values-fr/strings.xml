@@ -36,6 +36,9 @@
     <string name="quizz_title_training">Entrainement</string>
     <string name="quizz_title_exam">Examen</string>
 
+    <string name="exam_not_validated">Vous n\'avez pas encore valider l\'examen aujourd\'hui</string>
+    <string name="exam_validated">Vous avez réussit l\'exam du jour!</string>
+
     <string name="quizz_words">Liste des mots</string>
     <string name="quizz_sentences">Phrases example</string>
     <string name="quizz_no_sentence">Aucune phrase d\'exemple disponible</string>

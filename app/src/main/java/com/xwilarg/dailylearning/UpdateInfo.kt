@@ -32,7 +32,7 @@ object UpdateInfo {
             }
             // Update what we took in the storage
             with (preferences.edit()) {
-                putString("lastDaily", java.time.LocalDate.now().toString())
+                putString("lastDaily", LocalDate.now().toString())
                 putString("currentWord", voc.word)
                 putString("currentReading", voc.reading)
                 putString("currentMeanings", voc.meaning.joinToString())

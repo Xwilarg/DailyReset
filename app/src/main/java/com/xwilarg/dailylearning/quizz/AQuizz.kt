@@ -118,6 +118,7 @@ open class AQuizz : AppCompatActivity() {
             val intent = Intent(applicationContext, QuizzEnd::class.java)
             intent.putExtra("CORRECT", nbRight)
             intent.putExtra("INCORRECT", nbWrong)
+            intent.putExtra("IS_EXAM", !isTraining)
             startActivity(intent)
             return
         }
