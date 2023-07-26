@@ -3,6 +3,7 @@
     package="com.xwilarg.dailylearning">
 
     <application
+        android:icon="@drawable/icon"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
