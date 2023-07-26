@@ -33,7 +33,7 @@ class SampleSentence : AppCompatActivity() {
             sentences = translations.filter { info ->
                 preferences.getString("currentWord", "").toString() in info.sentence &&
                         preferences.getString("currentMeanings", "").toString().split(',').any { e ->
-                            e.trim() in info.translation
+                            e.trim(' ', '?', '!') in info.translation
                         }
             }.distinctBy { it.sentence }.distinctBy { it.translation } // So it doesn't feel redundant
             if (sentences.isNotEmpty()) {

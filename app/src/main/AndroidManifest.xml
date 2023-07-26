@@ -25,7 +25,8 @@
             android:name=".SampleSentence"
             android:parentActivityName=".MainActivity" />
 
-        <receiver android:name=".DailyLearningWidget">
+        <receiver android:name=".DailyLearningWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -37,7 +38,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
