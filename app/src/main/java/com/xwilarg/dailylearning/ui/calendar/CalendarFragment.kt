@@ -15,6 +15,7 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.xwilarg.dailylearning.*
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.ZoneId
 import java.time.temporal.WeekFields
 import java.util.*
 
@@ -26,6 +27,7 @@ class CalendarFragment : Fragment() {
     ): View? {
         val v: View = inflater.inflate(R.layout.fragment_calendar, container, false)
         val calendarView = v.findViewById<CalendarView>(R.id.calendarView)
+        val today = Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view)
 
@@ -33,6 +35,9 @@ class CalendarFragment : Fragment() {
                 container.textView.text = day.date.dayOfMonth.toString()
                 if (day.owner == DayOwner.THIS_MONTH) {
                     val todayValidated = UpdateInfo.didSucceedExamAtDate(requireContext(), day.date)
+                    if (today.year == day.date.year && today.monthValue == day.date.monthValue && today.dayOfMonth == day.date.dayOfMonth) {
+                        container.textView.textSize = 25F
+                    }
                     container.textView.setTextColor(if (todayValidated) {
                         Color.GREEN
                     } else {
