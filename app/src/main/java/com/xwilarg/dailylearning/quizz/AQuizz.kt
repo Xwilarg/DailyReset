@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -63,10 +62,19 @@ open class AQuizz : AppCompatActivity() {
     }
 
     private fun getRightAnswer(myAnswer: String): String? {
-        if (current.meaning.contains(myAnswer)) {
-            return myAnswer
+        if (guessReverse)
+        {
+            if (current.meaning.contains(myAnswer)) {
+                return myAnswer
+            }
+            return current.meaning[0]
         }
-        return if (guessReverse) { current.meaning[0] } else { current.reading }
+        else
+        {
+            if (current.word == myAnswer) return myAnswer
+            if (current.reading != null) return current.reading
+            return current.word
+        }
     }
 
     fun checkAnswer(myAnswer: String) {
