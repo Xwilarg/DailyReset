@@ -66,7 +66,7 @@ object UpdateInfo {
             val list = savedData.toMutableList()
             if (!savedData.any{ it.word == voc.word }) // We didn't already saved this word
             {
-                val addedData = VocabularyInfo(date = LocalDate.now(), word = voc.word, meaning = voc.meaning, reading = voc.reading)
+                val addedData = VocabularyInfo(date = LocalDate.now().toString(), word = voc.word, meaning = voc.meaning, reading = voc.reading)
                 list.add(addedData)
             }
             context.openFileOutput(lang + "Words.txt", Context.MODE_PRIVATE).use { itWrite ->
