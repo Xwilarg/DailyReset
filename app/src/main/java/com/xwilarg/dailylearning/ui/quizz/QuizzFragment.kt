@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,7 +86,8 @@ class QuizzFragment : Fragment() {
         val intent = Intent(activity, QuizzFree::class.java)
         intent.putExtra("IS_TRAINING", isTraining)
 
-        val modelIdentifier = DigitalInkRecognitionModelIdentifier.fromLanguageTag("ja")
+        Log.d("lang", UpdateInfo.getLearntLanguage(requireContext())!!)
+        val modelIdentifier = DigitalInkRecognitionModelIdentifier.fromLanguageTag(UpdateInfo.getOCRLearntLanguage(requireContext()))
         val model: DigitalInkRecognitionModel =
             DigitalInkRecognitionModel.builder(modelIdentifier!!).build()
         val remoteModelManager = RemoteModelManager.getInstance()

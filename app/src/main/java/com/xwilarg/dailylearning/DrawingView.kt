@@ -50,7 +50,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
                 if (path.isEmpty) {
                         callback(null)
                 } else {
-                        val modelIdentifier = DigitalInkRecognitionModelIdentifier.fromLanguageTag("ja")
+                        val modelIdentifier = DigitalInkRecognitionModelIdentifier.fromLanguageTag(UpdateInfo.getOCRLearntLanguage(context))
                         val model: DigitalInkRecognitionModel =
                                 DigitalInkRecognitionModel.builder(modelIdentifier!!).build()
                         getContentInternal(model, callback)
@@ -64,7 +64,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
                         .addOnSuccessListener { result: RecognitionResult ->
                                 if (BuildConfig.DEBUG) {
                                         for (res in result.candidates) {
-                                                Log.d("res", res.text)
+                                                Log.d("OCR", res.text)
                                         }
                                 }
                                 callback(result.candidates.map { it.text })

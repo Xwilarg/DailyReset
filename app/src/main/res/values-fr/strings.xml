@@ -55,7 +55,7 @@
 
     <string name="quizz_end_title">Vous avez atteint la fin du quizz.</string>
 
-    <string name="ocr_download">Voulez-vous télécharger les données pour l\'OCR? Une connection Internet est requise</string>
+    <string name="ocr_download">Voulez-vous télécharger les données de l\'OCR pour cette langue? Une connection Internet est requise</string>
     <string name="ocr_downloading">Données en cours de téléchargement, veuillez patienter…</string>
     <string name="ocr_error">Une erreur est parvenu lors du téléchargement des données de l\'OCR : </string>
 

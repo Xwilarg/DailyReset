@@ -14,6 +14,15 @@ object UpdateInfo {
         return preferences.getString("language", "ja")
     }
 
+    fun getOCRLearntLanguage(context: Context): String {
+        val lang = getLearntLanguage(context) ?: return "ja" // null shouldn't happen but better safe than sorry
+        return if (lang == "kr") {
+            "ko"
+        } else {
+            lang
+        }
+    }
+
     fun didSucceedExamAtDate(context: Context, date: LocalDate): Boolean {
         val tP = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
         val preferences = context.getSharedPreferences(tP.getString("language", "ja") + "Info", Context.MODE_PRIVATE)
