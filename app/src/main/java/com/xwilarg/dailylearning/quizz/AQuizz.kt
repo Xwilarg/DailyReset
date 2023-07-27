@@ -73,7 +73,7 @@ open class AQuizz : AppCompatActivity() {
         else
         {
             if (current.word == myAnswer) return myAnswer
-            if (current.reading != null) return current.reading
+            if (current.reading != null) return "${current.word} / ${current.reading}"
             return current.word
         }
     }
