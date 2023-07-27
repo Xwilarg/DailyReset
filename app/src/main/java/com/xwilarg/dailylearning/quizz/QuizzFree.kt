@@ -33,6 +33,7 @@ class QuizzFree : AQuizz() {
 
     fun clear(view: View) {
         findViewById<DrawingView>(R.id.viewDraw).clear()
+        findViewById<EditText>(R.id.ZoneWriteText).setText("")
     }
 
     fun help(view: View) {
