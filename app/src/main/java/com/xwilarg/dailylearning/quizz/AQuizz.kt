@@ -41,6 +41,7 @@ open class AQuizz : AppCompatActivity() {
             }
         }
         remainingWords = words.toCollection(ArrayList())
+        remainingWords.shuffle()
         loadQuestion()
     }
 
@@ -98,8 +99,16 @@ open class AQuizz : AppCompatActivity() {
 
         // No verification to do on exam mode
         // However for training more we only remove the answer if we are right
-        if (!isTraining || isRight) {
-            remainingWords.removeAt(currentIndex)
+        val elem = remainingWords[0]
+        remainingWords.removeAt(0)
+        if (isTraining && !isRight) {
+            if (remainingWords.size == 0) {
+                // List is empty so we just add it back since we can't put it behind smth else
+                remainingWords.add(elem)
+            } else {
+                // We move the question a bit later in the list
+                remainingWords.add(Random.nextInt(1, remainingWords.size + 1), elem)
+            }
         }
 
         findViewById<ConstraintLayout>(R.id.ConstraintLayoutAnswer).setBackgroundColor(color)
@@ -132,8 +141,7 @@ open class AQuizz : AppCompatActivity() {
         didAskForHelp = false
 
         // Get next question
-        currentIndex = Random.nextInt(remainingWords.size)
-        current = remainingWords[currentIndex]
+        current = remainingWords[0]
 
         guessReverse = Random.nextInt(0, 2) == 0
         val textQuizz = findViewById<TextView>(R.id.textQuizz)
@@ -156,7 +164,6 @@ open class AQuizz : AppCompatActivity() {
     private lateinit var remainingWords: ArrayList<VocabularyInfo>
     private lateinit var words: ArrayList<VocabularyInfo>
     private lateinit var current: VocabularyInfo
-    private var currentIndex = -1 // Index in remainingWords for current
     private var isTraining = false
     protected var guessReverse = false // If true is given the japanese and must guess the english, else is reversed
     private var didAskForHelp = false
