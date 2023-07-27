@@ -158,6 +158,6 @@ open class AQuizz : AppCompatActivity() {
     private lateinit var current: VocabularyInfo
     private var currentIndex = -1 // Index in remainingWords for current
     private var isTraining = false
-    private var guessReverse = false // If true is given the japanese and must guess the english, else is reversed
+    protected var guessReverse = false // If true is given the japanese and must guess the english, else is reversed
     private var didAskForHelp = false
 }

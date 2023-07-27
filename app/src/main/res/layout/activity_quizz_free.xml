@@ -35,8 +35,19 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="263dp" />
 
+    <EditText
+        android:id="@+id/ZoneWriteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@+id/ZoneFreeText"
+        app:layout_constraintEnd_toEndOf="@+id/ZoneFreeText"
+        app:layout_constraintStart_toStartOf="@+id/ZoneFreeText"
+        app:layout_constraintTop_toTopOf="@+id/guidelineMainSeparator2" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ContraintLayout"
+        android:id="@+id/ZoneFreeText"
         android:layout_width="410dp"
         android:layout_height="253dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineSend2"
@@ -119,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ContraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/ZoneFreeText"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView

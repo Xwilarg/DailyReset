@@ -36,7 +36,7 @@
         app:layout_constraintGuide_begin="263dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ContraintLayout"
+        android:id="@+id/ZoneFreeText"
         android:layout_width="410dp"
         android:layout_height="253dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineSend"
