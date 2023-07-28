@@ -61,7 +61,7 @@ class CalendarFragment : Fragment() {
         val preferences = requireContext().getSharedPreferences(UpdateInfo.getLearntLanguage(requireContext()) + "Info", Context.MODE_PRIVATE)
         val dates = preferences.getStringSet("succeedDates", emptySet())
         // We still display the streak if we didn't do today exam, but we add one to it if we did it
-        val streak = if (dates!!.contains(LocalDate.now().toString())) {
+        var streak = if (dates!!.contains(LocalDate.now().toString())) {
             1
         } else {
             0
@@ -70,6 +70,7 @@ class CalendarFragment : Fragment() {
         while (true) {
             if (dates.contains(LocalDate.now().minusDays(dayOffset).toString())) {
                 dayOffset++
+                streak++
                 continue
             }
             break
