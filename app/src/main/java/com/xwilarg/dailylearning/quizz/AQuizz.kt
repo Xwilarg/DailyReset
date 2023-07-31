@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.gson.Gson
 import com.xwilarg.dailylearning.R
+import com.xwilarg.dailylearning.UpdateInfo
 import com.xwilarg.dailylearning.UpdateInfo.getLearntLanguage
 import com.xwilarg.dailylearning.VocabularyInfo
 import kotlinx.android.synthetic.main.fragment_quizz.view.*
-import kotlin.random.Random
 
 open class AQuizz : AppCompatActivity() {
     fun preload() {
@@ -35,7 +35,7 @@ open class AQuizz : AppCompatActivity() {
         } else {
             words = ArrayList()
             while (words.size < questionCount) {
-                val index = Random.nextInt(0, original.size)
+                val index = UpdateInfo.randomNumber(0, original.size)
                 words.add(original[index])
                 original.removeAt(index)
             }
@@ -107,7 +107,7 @@ open class AQuizz : AppCompatActivity() {
                 remainingWords.add(elem)
             } else {
                 // We move the question a bit later in the list
-                remainingWords.add(Random.nextInt(1, remainingWords.size + 1), elem)
+                remainingWords.add(UpdateInfo.randomNumber(1, remainingWords.size + 1), elem)
             }
         }
 
@@ -119,7 +119,7 @@ open class AQuizz : AppCompatActivity() {
         val choices = arrayListOf<String>()
         choices.add(if (guessReverse) { current.meaning[0] } else { current.reading ?: current.word })
         while (choices.size < 4 && choices.size != words.size) {
-            val random = words[Random.nextInt(0, words.size)]
+            val random = words[UpdateInfo.randomNumber(0, words.size)]
             val randomChoice = if (guessReverse) { random.meaning[0] } else { random.reading ?: random.word }
             if (!choices.contains(randomChoice)) {
                 choices.add(randomChoice)
@@ -143,7 +143,7 @@ open class AQuizz : AppCompatActivity() {
         // Get next question
         current = remainingWords[0]
 
-        guessReverse = Random.nextInt(0, 2) == 0
+        guessReverse = UpdateInfo.randomNumber(0, 2) == 0
         val textQuizz = findViewById<TextView>(R.id.textQuizz)
         // Resize text depending if the question contains only the kanji or a list of words
         textQuizz.textSize = if (guessReverse) {

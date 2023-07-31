@@ -80,12 +80,19 @@ object UpdateInfo {
 
     fun updateKoreanInfo(resources: Resources) : VocabularyInfo {
         val content = Gson().fromJson(resources.openRawResource(R.raw.korean).bufferedReader().use { it.readText() }, Array<VocabularyInfo>::class.java)
-        return content[Random.nextInt(content.size)]
+        return content[randomNumber(0, content.size)]
+    }
+
+    fun randomNumber(from: Int, until: Int): Int {
+        if (random == null) {
+            random = Random(System.currentTimeMillis())
+        }
+        return random!!.nextInt(from, until)
     }
 
     fun updateJapaneseInfo(resources: Resources) : VocabularyInfo {
         // Get a random word from a random JLPT
-        val nb = Random.nextInt(0, 100)
+        val nb = randomNumber(0, 100)
         val jlpt = if (nb > 50) {
             R.raw.jlpt5
         } else if (nb > 25) {
@@ -98,6 +105,8 @@ object UpdateInfo {
             R.raw.jlpt1
         }
         val content = Gson().fromJson(resources.openRawResource(jlpt).bufferedReader().use { it.readText() }, Array<VocabularyInfo>::class.java)
-        return content[Random.nextInt(content.size)]
+        return content[randomNumber(0, content.size)]
     }
+
+    var random: Random? = null
 }

@@ -9,7 +9,6 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 class SampleSentence : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +36,7 @@ class SampleSentence : AppCompatActivity() {
                         }
             }.distinctBy { it.sentence }.distinctBy { it.translation } // So it doesn't feel redundant
             if (sentences.isNotEmpty()) {
-                index = Random.nextInt(sentences.size)
+                index = UpdateInfo.randomNumber(0, sentences.size)
                 displaySentence()
             } else {
                 findViewById<TextView>(R.id.sentence).text = getString(R.string.quizz_no_sentence)
