@@ -19,7 +19,7 @@ class QuizzFree : AQuizz() {
 
     fun answer(view: View) {
         if (guessReverse) {
-            checkAnswer(findViewById<EditText>(R.id.ZoneWriteText).text.toString())
+            checkAnswer(findViewById<EditText>(R.id.ZoneWriteText).text.toString().trim().lowercase())
         } else {
             findViewById<DrawingView>(R.id.viewDraw).getContent {
                 msg -> if (msg == null) {
